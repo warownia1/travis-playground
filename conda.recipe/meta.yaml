@@ -6,7 +6,6 @@ source:
   git_url: ../
 
 build:
-  noarch: python
   number: 0
   script: 
     - "mkdir -p $PREFIX/bin"
