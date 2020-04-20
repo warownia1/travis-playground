@@ -1,7 +1,6 @@
 git:
   depth: 2
   quiet: true
-language: python
 os:
   - linux
   - osx
