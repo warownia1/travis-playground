@@ -1,10 +1,20 @@
+git:
+  depth: 2
+  quiet: true
 language: python
 python:
   - "3.6"
+os:
+  - linux
 install:
-  - "pip install --upgrade pip"
-  - "pip install simplejson"
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda create -q -n myapp python=3.6 conda-build anaconda-client
+  - conda activate myapp
 script:
-  - python my_app.py
-env:
-  - TEST_NUMBER=1.0
+  - bash conda.recipe/build_package.sh
+

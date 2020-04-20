@@ -1,0 +1,30 @@
+package:
+  name: my_app
+  version: 1.0
+
+source:
+  git_url: ../
+
+build:
+  noarch: python
+  number: 0
+  script: 
+    - "mkdir -p $PREFIX/bin"
+    - "cp my_app.py $PREFIX/bin/myapp"
+    - "chmod +x $PREFIX/bin/myapp"
+
+channels:
+  - conda-forge
+  - defaults
+
+requirements:
+  host:
+    - python=3.6
+  run:
+    - python=3.6
+    - simplejson
+
+test:
+  commands:
+    - myapp
+
