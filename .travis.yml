@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.6"
+install:
+  - "pip install --upgrade pip"
+  - "pip install simplejson"
+script:
+  - python my_app.py
+env:
+  - TEST_NUMBER=1.0
