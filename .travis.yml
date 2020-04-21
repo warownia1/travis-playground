@@ -5,19 +5,10 @@ os:
   - linux
   - osx
 install:
-  - if [[ $TRAVIS_OS_NAME == "osx" ]]; then
-      MINICONDA_OS=MacOSX;
-    else
-      MINICONDA_OS=Linux;
-    fi
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-${MINICONDA_OS}-x86_64.sh -O miniconda.sh
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda create -q -n myapp python=3.6 conda-build anaconda-client
-  - conda activate myapp
+  - source install_conda.sh
+  - conda install anaconda-client -n base
 script:
-  - bash conda.recipe/build_package.sh
-
+  - conda env create mmwarowny/compbio-services
+  - conda activate compbio-services
+  - slivka --version | grep -q '0.6'
+  - command -v slivka-bio
